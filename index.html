@@ -1,23 +1,53 @@
+<!--
+* @Author                : jbristhuille<jbristhuille@gmail.com>
+* @CreatedDate           : 2024-02-28 22:02:00
+* @LastEditors           : jbristhuille<jbristhuille@gmail.com>
+* @LastEditDate          : 2024-02-28 22:19:29
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RGP Project</title>
-
-  <style>
-    #game {
-      width: 500px;
-      height: 500px;
-      border: solid 1px red;
-      background-color: white;
-      overflow: hidden;
-      position: relative;
-    }
-  </style>
+  <script src="./dist/odin-engine.js"></script>
 </head>
 <body>
-  <div id="game"></div>
-  <script src="./src/main.js" defer></script>
+  <script>
+    const myGame = new OdinEngine.Game();
+
+    const playerMove = (player, input) => {
+      let speed = 5;
+      let pos = {
+        x: Number(player.style.left.slice(0, -2)),
+        y: Number(player.style.top.slice(0, -2))
+      };
+
+      if (pos.x > 500) player.style.left = "0px";
+      else if (pos.x < 0) player.style.left = "500px";
+      else if (pos.y > 500) player.style.top = "0px";
+      else if (pos.y < 0) player.style.top = "500px";
+      else {
+        if (myGame.inputManager.isKeyPressed(input.right)) player.style.left = pos.x + speed + "px";
+        if (myGame.inputManager.isKeyPressed(input.left)) player.style.left = pos.x - speed + "px";
+        if (myGame.inputManager.isKeyPressed(input.top)) player.style.top = pos.y - speed + "px";
+        if (myGame.inputManager.isKeyPressed(input.bottom)) player.style.top = pos.y + speed + "px";
+      }
+    };
+
+    const start = () => {
+      const player = document.createElement("div");
+      player.setAttribute("id", "player");
+      player.style = "width: 50px; height: 50px; background: blue; position: absolute";
+  
+      myGame.spawnEntity(player);
+      myGame.onTick(() => {
+        playerMove(player, {left: "q", right: "d", top: "z", bottom: "s"});
+      });
+    }
+
+    start();
+  </script>
 </body>
 </html>
