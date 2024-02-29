@@ -2,7 +2,7 @@
 * @Author                : jbristhuille<jbristhuille@gmail.com>
 * @CreatedDate           : 2024-02-28 22:02:00
 * @LastEditors           : jbristhuille<jbristhuille@gmail.com>
-* @LastEditDate          : 2024-02-29 22:52:09
+* @LastEditDate          : 2024-02-29 23:59:00
 -->
 
 <!DOCTYPE html>
@@ -37,14 +37,24 @@
     };
 
     const start = () => {
-      inputManager = new OdinEngine.InputManager();
-      const player = document.createElement("div");
-      player.setAttribute("id", "player");
-      player.style = "width: 50px; height: 50px; background: blue; position: absolute";
-  
+      const inputManager = new OdinEngine.InputManager();
+      const player = new OdinEngine.Entity({
+        id: "player",
+        style: [{
+          key: "width",
+          value: "50px"
+        }, {
+          key: "height",
+          value: "50px"
+        }, {
+          key: "background",
+          value: "blue"
+        }]
+      });
+
       myGame.spawnEntity(player);
       myGame.onTick(() => {
-        playerMove(inputManager, player, {left: "q", right: "d", top: "z", bottom: "s"});
+        playerMove(inputManager, player.node, {left: "q", right: "d", top: "z", bottom: "s"});
       });
     }
 

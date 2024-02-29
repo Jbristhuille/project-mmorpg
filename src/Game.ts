@@ -2,14 +2,19 @@
  * @Author                : jbristhuille<jbristhuille@gmail.com>              *
  * @CreatedDate           : 2024-02-28 21:44:36                               *
  * @LastEditors           : jbristhuille<jbristhuille@gmail.com>              *
- * @LastEditDate          : 2024-02-29 22:50:59                               *
+ * @LastEditDate          : 2024-02-29 23:56:28                               *
  *****************************************************************************/
 
 /* SUMMARY
+  * Imports
   * Interfaces
   * Initialize game
   * Spawn entity
 */
+
+/* Imports */
+import Entity from "./Entity";
+/***/
 
 /* Interfaces */
 interface IGameOptions {
@@ -53,11 +58,11 @@ class Game {
   * @param x - X position
   * @param y - Y position
   */
-  spawnEntity(entity: HTMLElement, x: number, y: number): void { // tmp, replace html element by entity object
-    entity.style.left = x+"px";
-    entity.style.top = y+"px";
+  spawnEntity(entity: Entity, x: number, y: number): void { // tmp, replace html element by entity object
+    entity.node.style.left = x+"px";
+    entity.node.style.top = y+"px";
 
-    this.game.append(entity);
+    this.game.append(entity.node);
   }
   /***/
 
