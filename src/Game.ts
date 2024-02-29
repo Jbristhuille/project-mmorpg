@@ -2,19 +2,14 @@
  * @Author                : jbristhuille<jbristhuille@gmail.com>              *
  * @CreatedDate           : 2024-02-28 21:44:36                               *
  * @LastEditors           : jbristhuille<jbristhuille@gmail.com>              *
- * @LastEditDate          : 2024-02-28 22:19:22                               *
+ * @LastEditDate          : 2024-02-29 22:50:59                               *
  *****************************************************************************/
 
 /* SUMMARY
-  * Imports
   * Interfaces
   * Initialize game
   * Spawn entity
 */
-
-/* Imports */
-import InputManager from "./InputManager";
-/***/
 
 /* Interfaces */
 interface IGameOptions {
@@ -29,7 +24,6 @@ class Game {
   private width: number;
   private height: number;
   private tickTime: number;
-  public inputManager = new InputManager();
 
   /**
   * Initialize game
